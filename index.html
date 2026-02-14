@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eşik - Gizlilik Politikası</title>
+    <style>
+        :root {
+            --bg-primary: #0F172A;
+            --bg-card: #1E293B;
+            --text-primary: #E2E8F0;
+            --text-secondary: #94A3B8;
+            --accent: #2DD4BF;
+            --accent-secondary: #6366F1;
+            --red: #EF4444;
+            --border: #334155;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            padding: 0;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1E3A5F 0%, #0F172A 100%);
+            padding: 60px 20px 40px;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: white;
+        }
+        
+        .header .subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        
+        .header .app-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--bg-primary);
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px 20px 60px;
+        }
+        
+        .update-date {
+            text-align: center;
+            color: var(--accent-secondary);
+            font-size: 13px;
+            margin-bottom: 30px;
+            padding: 8px 16px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 20px;
+            display: inline-block;
+        }
+        
+        .section {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 16px;
+            border: 1px solid var(--border);
+        }
+        
+        .section h2 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section h2 .icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            font-size: 18px;
+        }
+        
+        .section p, .section li {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        
+        .section ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .section ul li {
+            padding: 4px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .section ul li::before {
+            content: "•";
+            color: var(--accent);
+            font-weight: bold;
+            position: absolute;
+            left: 4px;
+        }
+        
+        .section h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin: 16px 0 8px;
+            color: var(--text-primary);
+        }
+        
+        .warning-box {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 16px;
+        }
+        
+        .warning-box p {
+            color: var(--red);
+            font-weight: 500;
+        }
+        
+        .info-box {
+            background: rgba(45, 212, 191, 0.1);
+            border: 1px solid rgba(45, 212, 191, 0.3);
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 16px;
+        }
+        
+        .info-box p {
+            color: var(--accent);
+            font-weight: 500;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+        
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Colors for section icons */
+        .icon-indigo { background: rgba(99, 102, 241, 0.15); color: #818CF8; }
+        .icon-blue { background: rgba(59, 130, 246, 0.15); color: #60A5FA; }
+        .icon-teal { background: rgba(45, 212, 191, 0.15); color: #2DD4BF; }
+        .icon-orange { background: rgba(251, 146, 60, 0.15); color: #FB923C; }
+        .icon-green { background: rgba(74, 222, 128, 0.15); color: #4ADE80; }
+        .icon-red { background: rgba(239, 68, 68, 0.15); color: #EF4444; }
+        .icon-purple { background: rgba(168, 85, 247, 0.15); color: #A855F7; }
+        .icon-amber { background: rgba(251, 191, 36, 0.15); color: #FBBF24; }
+        .icon-pink { background: rgba(236, 72, 153, 0.15); color: #EC4899; }
+        
+        @media (max-width: 600px) {
+            .header { padding: 40px 16px 30px; }
+            .header h1 { font-size: 22px; }
+            .container { padding: 20px 16px 40px; }
+            .section { padding: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="app-badge">Eşik Uygulaması</div>
+        <h1>🔒 Gizlilik Politikası</h1>
+        <p class="subtitle">Kişisel Verilerin Korunması ve İşlenmesi Aydınlatma Metni</p>
+    </div>
+    
+    <div class="container">
+        <center><span class="update-date">📅 Son güncelleme: 14 Şubat 2026</span></center>
+        <br><br>
+        
+        <!-- 1. Veri Sorumlusu -->
+        <div class="section">
+            <h2><span class="icon icon-indigo">🏢</span> 1. Veri Sorumlusu</h2>
+            <p>Eşik uygulaması, kumar bağımlılığıyla mücadele eden bireylere destek sağlamak amacıyla geliştirilmiş bir sağlıklı yaşam aracıdır.</p>
+            <p style="margin-top: 12px;"><strong>İletişim:</strong> esilkiletisim@gmail.com</p>
+        </div>
+        
+        <!-- 2. Toplanan Veriler -->
+        <div class="section">
+            <h2><span class="icon icon-blue">📊</span> 2. Toplanan Veriler</h2>
+            
+            <h3>a) Cihazda Saklanan Veriler (SharedPreferences)</h3>
+            <ul>
+                <li>Kullanıcı adı ve profil tercihleri</li>
+                <li>Bağımlılık başlangıç tarihi ve temiz gün sayacı</li>
+                <li>Duygu durumu kayıtları</li>
+                <li>Güven çemberi kişileri</li>
+                <li>Tetikleyici haritası ve notlar</li>
+                <li>PIN güvenlik verileri (hash olarak)</li>
+                <li>Uygulama ayarları ve tercihleri</li>
+            </ul>
+            
+            <h3>b) Bulutta Saklanan Veriler (Firebase Firestore)</h3>
+            <ul>
+                <li>Eşleşme kodu (pairing code)</li>
+                <li>Refakatçi bağlantı durumu</li>
+                <li>Harçlık ve harcama kayıtları</li>
+                <li>Net mali durum bilgileri</li>
+                <li>İyileşme sözleşmesi verisi</li>
+                <li>Kanıt fotoğrafları</li>
+            </ul>
+            
+            <h3>c) Özel Nitelikli Kişisel Veriler (KVKK m.6)</h3>
+            <ul>
+                <li>Bağımlılık geçmişi (kumar oynama süresi, kayıp miktarları)</li>
+                <li>Duygu durumu ve psikolojik durum kayıtları</li>
+                <li>Nüks (relapse) kayıtları</li>
+                <li>Borç bilgileri ve finansal veriler</li>
+            </ul>
+        </div>
+        
+        <!-- 3. İşleme Amaçları -->
+        <div class="section">
+            <h2><span class="icon icon-teal">🎯</span> 3. Verilerin İşlenme Amaçları</h2>
+            <ul>
+                <li>Kişiselleştirilmiş motivasyonel destek sağlama</li>
+                <li>İlerleme takibi ve analiz</li>
+                <li>Refakatçi ile güvenli veri paylaşımı (açık rızanızla)</li>
+                <li>Harçlık yönetimi ve harcama takibi</li>
+                <li>Bildirim gönderimi (yerel ve push)</li>
+                <li>Uygulama performansını iyileştirme</li>
+            </ul>
+        </div>
+        
+        <!-- 4. Veri Aktarımı -->
+        <div class="section">
+            <h2><span class="icon icon-orange">🔗</span> 4. Veri Aktarımı ve Paylaşım</h2>
+            <p>Verileriniz yalnızca aşağıdaki durumlarda paylaşılır:</p>
+            <ul>
+                <li><strong>Refakatçiniz:</strong> Yalnızca açık rızanızla, eşleşme kodu üzerinden</li>
+                <li><strong>Firebase (Google):</strong> Güvenli bulut depolama altyapısı</li>
+                <li><strong>Google AdMob:</strong> Reklam hizmeti (anonim cihaz tanımlayıcıları)</li>
+                <li><strong>Yasal yükümlülükler:</strong> Mahkeme kararı vb. zorunlu haller</li>
+            </ul>
+            <div class="info-box">
+                <p>✅ Verileriniz hiçbir koşulda satılmaz veya pazarlama amaçlı kullanılmaz.</p>
+            </div>
+        </div>
+        
+        <!-- 5. Veri Güvenliği -->
+        <div class="section">
+            <h2><span class="icon icon-green">🛡️</span> 5. Veri Güvenliği</h2>
+            <ul>
+                <li>Firebase TLS/SSL şifreleme ile veri iletimi</li>
+                <li>PIN ve güvenlik bilgileri hash algoritmalarıyla korunur</li>
+                <li>Yerel veriler cihazın güvenli depolama alanında saklanır</li>
+                <li>Erişim kontrolü ve yetkilendirme mekanizmaları</li>
+            </ul>
+        </div>
+        
+        <!-- 6. Hesap ve Veri Silme -->
+        <div class="section">
+            <h2><span class="icon icon-red">🗑️</span> 6. Hesap ve Veri Silme</h2>
+            <p>Tüm verilerinizi kalıcı olarak silme hakkına sahipsiniz:</p>
+            <ul>
+                <li><strong>Uygulama içi:</strong> Menü &gt; Hesabımı ve Verilerimi Sil</li>
+                <li>Silme işlemi <strong>anında</strong> gerçekleşir</li>
+                <li>Firebase'deki tüm veriler kalıcı olarak kaldırılır</li>
+                <li>Cihazınızdaki tüm yerel veriler temizlenir</li>
+                <li>Refakatçi bağlantısı otomatik olarak kesilir</li>
+            </ul>
+            <div class="warning-box">
+                <p>⚠️ Silme işlemi geri alınamaz. Tüm verileriniz kalıcı olarak kaldırılır.</p>
+            </div>
+        </div>
+        
+        <!-- 7. KVKK Hakları -->
+        <div class="section">
+            <h2><span class="icon icon-purple">⚖️</span> 7. KVKK Kapsamındaki Haklarınız</h2>
+            <p>6698 sayılı Kişisel Verilerin Korunması Kanunu uyarınca:</p>
+            <ul>
+                <li>Kişisel verilerinizin işlenip işlenmediğini öğrenme</li>
+                <li>İşlenmişse bilgi talep etme</li>
+                <li>İşlenme amacını ve amacına uygun kullanılıp kullanılmadığını öğrenme</li>
+                <li>Yurt içinde veya yurt dışında aktarıldığı üçüncü kişileri bilme</li>
+                <li>Eksik veya yanlış işlenmişse düzeltilmesini isteme</li>
+                <li>Silinmesini veya yok edilmesini isteme</li>
+                <li>Otomatik sistemler ile analiz edilmesine itiraz etme</li>
+                <li>Kanuna aykırı işleme nedeniyle zararınızın giderilmesini talep etme</li>
+            </ul>
+        </div>
+        
+        <!-- 8. Bildirimler -->
+        <div class="section">
+            <h2><span class="icon icon-purple">🔔</span> 8. Bildirimler</h2>
+            <ul>
+                <li>Yerel bildirimler: Motivasyon mesajları cihazda planlanır</li>
+                <li>Push bildirimler: Firebase Cloud Messaging (FCM) üzerinden</li>
+                <li>Bildirim içeriği kişisel veri içermez</li>
+                <li>Bildirimleri istediğiniz zaman ayarlardan kapatabilirsiniz</li>
+            </ul>
+        </div>
+        
+        <!-- 9. Çocuklar -->
+        <div class="section">
+            <h2><span class="icon icon-amber">👶</span> 9. Çocuklara Yönelik Politika</h2>
+            <p>Bu uygulama <strong>18 yaş ve üzeri yetişkinlere</strong> yöneliktir. 18 yaşından küçük bireylerin uygulamayı kullanması amaçlanmamıştır. Bilerek bir çocuğa ait veri toplamayız.</p>
+        </div>
+        
+        <!-- 10. Sorumluluk Reddi -->
+        <div class="section">
+            <h2><span class="icon icon-pink">🏥</span> 10. Sorumluluk Reddi</h2>
+            <p>Bu uygulama tıbbi veya psikolojik tedavi yerine geçmez. Profesyonel destek için bir sağlık uzmanına başvurunuz. Bilgilendirme ve kişisel motivasyon aracı olarak tasarlanmıştır.</p>
+            <div class="info-box">
+                <p>Ciddi psikolojik sorunlar için:<br>
+                📞 YEDAM: 444 0 632<br>
+                📞 ALO 182 (Sosyal Destek Hattı)</p>
+            </div>
+        </div>
+        
+        <!-- 11. Politika Değişiklikleri -->
+        <div class="section">
+            <h2><span class="icon icon-indigo">📋</span> 11. Politika Değişiklikleri</h2>
+            <p>Bu gizlilik politikasını zaman zaman güncelleyebiliriz. Önemli değişiklikler yapıldığında uygulama içi bildirimle bilgilendirilirsiniz. Politikanın en güncel versiyonu her zaman bu sayfada yayımlanacaktır.</p>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p><strong>Eşik</strong> - Kumar Bağımlılığı ile Mücadele Destek Uygulaması</p>
+        <p style="margin-top: 8px;">İletişim: <a href="mailto:esilkiletisim@gmail.com">esilkiletisim@gmail.com</a></p>
+        <p style="margin-top: 4px;">© 2026 Eşik - Tüm hakları saklıdır.</p>
+    </div>
+</body>
+</html>
